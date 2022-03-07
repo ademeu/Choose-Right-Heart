@@ -1,14 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerControler : MonoBehaviour
 {
+    [SerializeField] Text _textSayac;
+    public static int _sayac;
+    public List<string> _list = new List<string>();
+  
+    [SerializeField] float _speed;
+
+    private void FixedUpdate()
+    {
+        PlayerHaraket();
+    }
+    void PlayerHaraket()
+    {
+        float yatay = Input.GetAxis("Horizontal") * _speed;
+        float dikey = Input.GetAxis("Vertical") * _speed;
+        yatay *= Time.deltaTime;
+        dikey *= Time.deltaTime;
+        transform.position += new Vector3(yatay, dikey);
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Top"))
+        switch (collision.gameObject.tag)
         {
-            Destroy(collision.gameObject);
+            case "Top":
+                Destroy(collision.gameObject);
+                _textSayac.text = GameManager._instance._skor.ToString();
+                 GameManager._instance.UpdateScore();
+                break;
+           
         }
     }
 
@@ -16,9 +41,10 @@ public class PlayerControler : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            PlayerPrefs.SetString("score",_textSayac.text);
+
             Debug.Log("carpti");
-            Time.timeScale = 0;
-            
+            SceneManager.LoadScene("EndGame");
         }
     }
 }

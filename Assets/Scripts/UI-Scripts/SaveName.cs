@@ -10,8 +10,9 @@ public class SaveName : MonoBehaviour
     
     public void SaveButton()
     {
-        PlayerPrefs.SetString("name", _nameIF.text); 
 
+
+        PlayerPrefs.SetString("name", _nameIF.text); 
         Debug.Log("Senin adin : " + PlayerPrefs.GetString("name"));
 
         SceneManager.LoadScene("Level1");

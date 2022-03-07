@@ -6,7 +6,7 @@ public class MoverController : MonoBehaviour
 {
     Rigidbody2D _rg;
     [SerializeField] float _engelDususHizi;
-    Vector2 _v2;
+    //Vector2 _v2;
    // DirectionEnum _directionEnum;
 
     private void Awake()
@@ -15,9 +15,7 @@ public class MoverController : MonoBehaviour
     }
     void Start()
     {
-        
         _rg.velocity = Vector2.down * _engelDususHizi;
-
     }
     //Vector2 DirectionSelect()
     //{

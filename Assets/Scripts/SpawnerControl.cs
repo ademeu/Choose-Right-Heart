@@ -9,7 +9,8 @@ public class SpawnerControl : MonoBehaviour
     {
         StartCoroutine(EnemyYarat());
     }
-    //sillllllllll bunuuuu
+     
+   
     IEnumerator EnemyYarat()
     {
         Instantiate(_dusenEnemy, new Vector3(Random.Range(-2.5f, 2.5f), 6f, 0f), Quaternion.identity);
