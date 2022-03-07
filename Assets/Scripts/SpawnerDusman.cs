@@ -14,7 +14,7 @@ public class SpawnerDusman : MonoBehaviour
     IEnumerator DusmanYarat()
     {
         Instantiate(_dusmanPref, new Vector3(Random.Range(-2.5f, 2.5f), 6f, 0f), Quaternion.identity);
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
         StartCoroutine(DusmanYarat());
     }
 } 

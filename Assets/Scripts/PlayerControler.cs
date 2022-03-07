@@ -7,11 +7,12 @@ using UnityEngine.SceneManagement;
 public class PlayerControler : MonoBehaviour
 {
     [SerializeField] Text _textSayac;
-    public static int _sayac;
-    public List<string> _list = new List<string>();
-  
     [SerializeField] float _speed;
 
+    private void Start()
+    {
+        GameManager._instance.ScoreSifir();
+    }
     private void FixedUpdate()
     {
         PlayerHaraket();
@@ -33,17 +34,13 @@ public class PlayerControler : MonoBehaviour
                 _textSayac.text = GameManager._instance._skor.ToString();
                  GameManager._instance.UpdateScore();
                 break;
-           
         }
     }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
             PlayerPrefs.SetString("score",_textSayac.text);
-
-            Debug.Log("carpti");
             SceneManager.LoadScene("EndGame");
         }
     }

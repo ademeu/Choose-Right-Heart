@@ -24,4 +24,8 @@ public class GameManager : MonoBehaviour
     {
         _skor++;
     }
+    public void ScoreSifir()
+    {
+        _skor = 0;
+    }
 }
