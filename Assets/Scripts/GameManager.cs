@@ -1,10 +1,10 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
+
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager _instance { get; private set; }
-    public int _skor;
+    public int _skor = 1;
     int scoreCarpani = 15;
     public delegate float HizDegis();
     public static HizDegis hizdegis;
@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
     }
     public void ScoreSifir()
     {
-        _skor = 0;
+        _skor = 1;
     }
 
     public void Score(int _score)
@@ -53,7 +53,6 @@ public class GameManager : MonoBehaviour
         _skor += _score;
         if (_skor > scoreCarpani)
         {
-            Debug.Log("Herangı bir şey");
             scoreCarpani += 15;
             _objeHiz *= 1.5f;
             foreach (Transform child in _spawnObje)
