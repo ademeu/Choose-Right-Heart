@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -9,14 +7,32 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] Text _textSayac;
     [SerializeField] float _speed;
 
+    [SerializeField] SpriteRenderer _spriteRenderer;
+    [SerializeField] Sprite _kalpliSprite;
+
+    void ChangeSprite()
+    {
+        if (GameManager._instance._skor == 50)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = _kalpliSprite;
+           // _spriteRenderer.sprite = _kalpliSprite;
+        }
+        
+    }
+    private void Update()
+    {
+        ChangeSprite();
+    }
+
     private void Start()
     {
-        GameManager._instance.ScoreSifir();
+        GameManager._instance.ScoreSifir(); 
     }
     private void FixedUpdate()
     {
         PlayerHaraket();
     }
+   
     void PlayerHaraket()
     {
         float yatay = Input.GetAxis("Horizontal") * _speed;
@@ -25,6 +41,9 @@ public class PlayerControler : MonoBehaviour
         dikey *= Time.deltaTime;
         transform.position += new Vector3(yatay, dikey);
     }
+
+
+    #region Kirmizi Kalp OnTriggerEnter2D
     private void OnTriggerEnter2D(Collider2D collision)
     {
         switch (collision.gameObject.tag)
@@ -32,16 +51,19 @@ public class PlayerControler : MonoBehaviour
             case "Top":
                 Destroy(collision.gameObject);
                 _textSayac.text = GameManager._instance._skor.ToString();
-                 GameManager._instance.UpdateScore();
+                GameManager._instance.UpdateScore();
                 break;
         }
     }
+    #endregion
+    #region Siyah Kalp OnCollisionEnter2D
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            PlayerPrefs.SetString("score",_textSayac.text);
+            PlayerPrefs.SetString("score", _textSayac.text);
             SceneManager.LoadScene("EndGame");
         }
-    }
+    } 
+    #endregion
 }

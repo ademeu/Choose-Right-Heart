@@ -1,25 +1,44 @@
-using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager _instance { get; private set; }
-
-    public int _skor { get; set; }
+    public int _skor;
+    int scoreCarpani = 15;
+    public delegate float HizDegis();
+    public static HizDegis hizdegis;
+    public delegate void ScoreUpdate(int score);
+    public static ScoreUpdate scoreDegis;
+    private float _objeHiz = 1f;
+    [SerializeField] Transform _spawnObje;
 
     private void Awake()
     {
+        scoreDegis += Score;
+        hizdegis += GetObjeHiz;
+
         if (_instance == null)
         {
             _instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(_instance);
         }
-        else
+        else if(_instance != this)
         {
-            Destroy(this.gameObject);
+            Destroy(_instance);
         }
     }
+    private void Update()
+    {
+        Debug.Log(hizdegis);
+        Score(0);
+    }
+
+    private float GetObjeHiz()
+    {
+        return _objeHiz;
+    }
+
     public void UpdateScore()
     {
         _skor++;
@@ -27,5 +46,21 @@ public class GameManager : MonoBehaviour
     public void ScoreSifir()
     {
         _skor = 0;
+    }
+
+    public void Score(int _score)
+    {
+        _skor += _score;
+        if (_skor > scoreCarpani)
+        {
+            Debug.Log("Herangı bir şey");
+            scoreCarpani += 15;
+            _objeHiz *= 1.5f;
+            foreach (Transform child in _spawnObje)
+            {
+                Destroy(child.gameObject);
+            }
+            return;
+        }
     }
 }

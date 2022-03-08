@@ -12,6 +12,7 @@ public class SaveName : MonoBehaviour
     {
         PlayerPrefs.SetString("name", _nameIF.text); 
         Debug.Log("Senin adin : " + PlayerPrefs.GetString("name"));
+
         SceneManager.LoadScene("Level1");
     }
    

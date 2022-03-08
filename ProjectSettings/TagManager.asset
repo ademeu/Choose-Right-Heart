@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Top
   - Enemy
+  - kalp
   layers:
   - Default
   - TransparentFX

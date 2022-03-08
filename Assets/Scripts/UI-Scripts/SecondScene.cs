@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class SecondScene : MonoBehaviour
 {
@@ -14,7 +11,12 @@ public class SecondScene : MonoBehaviour
     {   
         _nameTxt.text = PlayerPrefs.GetString("name");
         Debug.Log("Aldigin Score: " + PlayerPrefs.GetString("score",_scoreTxt.text));
-        _scoreTxt.text = $"Aldigin Score: {PlayerPrefs.GetString("score")}";
+
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            _scoreTxt.text = $"Aldigin Score: {PlayerPrefs.GetString("score")}";
+        }
+       
     }
 
     public void DelteSavedButton()
