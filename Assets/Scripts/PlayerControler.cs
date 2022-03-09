@@ -5,44 +5,37 @@ using UnityEngine.SceneManagement;
 public class PlayerControler : MonoBehaviour
 {
     [SerializeField] Text _textSayac;
-    [SerializeField] float _speed;
-
     [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] Sprite _kalpliSprite;
-
-    void ChangeSprite()
-    {
-        if (GameManager._instance._skor == 50)
-        {
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = _kalpliSprite;
-           // _spriteRenderer.sprite = _kalpliSprite;
-        }
-        
-    }
+    [SerializeField] float _speed;
+    
+    
     private void Update()
     {
         ChangeSprite();
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
+        {
+            Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
+            transform.Translate(touchDeltaPosition.x * _speed, 
+                touchDeltaPosition.y * _speed, 0);
+        }
     }
 
     private void Start()
     {
         GameManager._instance.ScoreSifir(); 
     }
-    private void FixedUpdate()
-    {
-        PlayerHaraket();
-    }
    
-    void PlayerHaraket()
+    #region Kirmizi Kalp SpriteRenderer
+    void ChangeSprite()
     {
-        float yatay = Input.GetAxis("Horizontal") * _speed;
-        float dikey = Input.GetAxis("Vertical") * _speed;
-        yatay *= Time.deltaTime;
-        dikey *= Time.deltaTime;
-        transform.position += new Vector3(yatay, dikey);
-    }
-
-
+        if (GameManager._instance._skor == 51)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = _kalpliSprite;
+            // _spriteRenderer.sprite = _kalpliSprite;
+        }
+    } 
+    #endregion
     #region Kirmizi Kalp OnTriggerEnter2D
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -66,4 +59,6 @@ public class PlayerControler : MonoBehaviour
         }
     } 
     #endregion
+
+    
 }
