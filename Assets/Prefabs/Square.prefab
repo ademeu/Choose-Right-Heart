@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8845893767088010313}
   - component: {fileID: 1172072240610477719}
   - component: {fileID: 5073306795711056380}
+  - component: {fileID: 5490508420068514941}
   m_Layer: 0
   m_Name: Square
   m_TagString: Enemy
@@ -147,3 +148,22 @@ CircleCollider2D:
   m_Offset: {x: 0.017397651, y: 0.19136335}
   serializedVersion: 2
   m_Radius: 1.6799202
+--- !u!95 &5490508420068514941
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3324200493145057481}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f5d20b6fe51f98d45b0ef0c53bcd72d5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
