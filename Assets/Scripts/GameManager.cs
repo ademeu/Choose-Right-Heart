@@ -5,9 +5,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager _instance { get; private set; }
     public int _skor = 1;
+
     int scoreCarpani = 15;
     public delegate float HizDegis();
     public static HizDegis hizdegis;
+
+
     public delegate void ScoreUpdate(int score);
     public static ScoreUpdate scoreDegis;
     private float _objeHiz = 1f;
